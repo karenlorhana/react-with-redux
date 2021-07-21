@@ -2,13 +2,20 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  font-size: 100px;
 }
+
 .icon-right {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  font-size: 100px;
+}
+
+.season-display.winter i {
+  color: blue;
+}
+
+.season-display.summer i {
+  color: red;
 }
 
 .season-display {
@@ -18,16 +25,10 @@
   height: 100vh;
 }
 
-.season-display.winter span {
-  color: blue;
-}
-
-.season-display.summer span {
-  color: red;
-}
 .winter {
   background-color: aliceblue;
 }
+
 .summer {
   background-color: orange;
 }
