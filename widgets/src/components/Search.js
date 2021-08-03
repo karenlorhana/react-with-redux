@@ -9,7 +9,7 @@ const Search = () => {
   useEffect(() => {
     const timerID = setTimeout(() => {
       setDebouncedTerm(term)
-    }, 2000)
+    }, 1000)
     return () => {
       clearTimeout(timerID)
     }
@@ -17,7 +17,7 @@ const Search = () => {
 
   useEffect(() => {
     const search = async () => {
-      const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
+      const { data } = await axios.get('https://pt.wikipedia.org/w/api.php', {
         params: {
           action: 'query',
           list: 'search',
@@ -27,18 +27,21 @@ const Search = () => {
         },
       })
 
-      setResults(data.query.search)
+      if (data.query) {
+        setResults(data.query.search)
+      } else {
+        setResults([])
+      }
     }
     search()
   }, [debouncedTerm])
 
- 
   const renderedResults = results.map((result) => {
     return (
       <div key={result.pageid} className='item'>
         <div className='right floated content'>
           <a
-            href={`https://en.wikipedia.org?curid=${result.pageid}`}
+            href={`https://pt.wikipedia.org?curid=${result.pageid}`}
             className='ui button'
             target='_blank'
             rel='noopener noreferrer'
